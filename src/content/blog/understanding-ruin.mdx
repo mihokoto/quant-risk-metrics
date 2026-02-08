@@ -1,0 +1,40 @@
+---
+title: "Understanding Risk of Ruin: Why 50% Win Rate isn't Enough"
+date: "2026-02-01"
+category: "Math"
+difficulty: "Beginner"
+tags: ["Education", "Risk of Ruin", "Probability"]
+excerpt: "Most traders focus on strategy, but ignore the math of survival. Here is how risk per trade destroys accounts."
+author: "QuantRisk Team"
+---
+
+Trading is a game of probabilities, not certainties. Most retail traders obsess over their "Strategy" — the entry model, the indicators, the setup. But institutional desks obsess over something else entirely: **Survival**.
+
+<Quote author="Risk Engine V2">
+  Survival is the only metric that matters. A profitable trader who goes broke is still broke.
+</Quote>
+
+In the world of Prop Firms (like Apex, FTMO, Topstep), survival is even harder because of the **Drawdown Limit**. You don't have $50,000 of room; you usually only have $2,500.
+
+## Interactive Analysis
+<QuantBadge />
+
+Let's look at the math. Below is a live Monte Carlo simulator running 1,000 simulations of an **Apex 50k** evaluation account.
+
+<RiskSimulatorEmbed preset="apex_50k" />
+
+<Callout type="warning">
+  **The Ruin Threshold:** Once your account equity drops below 50% of your allowed drawdown, your survival probability decreases exponentially, not linearly.
+</Callout>
+
+### The Trap of High Risk
+Try moving the "Risk Per Trade" slider above to **2.0%**. 
+
+Even with a 40% Win Rate (which is standard for high R:R strategies), risking 2% per trade on a $2,500 drawdown buffer is suicidal. The **Ruin Probability** likely jumps to over 60-80%.
+
+### The Mathematical Solution
+To survive a strict drawdown, you must inverse the math:
+1.  **Lower Risk**: 0.5% to 0.75% is the sweet spot.
+2.  **Increase Frequency**: Take more trades at lower size to let the "Law of Large Numbers" play out.
+
+If you don't respect the math, the math won't respect your account.
