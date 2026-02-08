@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Inter, Outfit, Lora } from "next/font/google";
 import "./globals.css";
@@ -47,11 +48,11 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AuthProvider>
             <div className="animate-in-fade">
-              <React.Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
+              <Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
                 <Shell>
                   {children}
                 </Shell>
-              </React.Suspense>
+              </Suspense>
             </div>
           </AuthProvider>
         </ReactQueryProvider>
