@@ -93,14 +93,7 @@ ${distribution.ruinProbability > 5
                     <div>
                         <div className="flex items-center gap-2">
                             <h2 className="text-2xl font-bold text-white font-outfit tracking-tight">Account Health Report</h2>
-                            {!isPro && (
-                                <Link href="/pricing">
-                                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 cursor-pointer hover:bg-amber-500/20 transition-colors active:scale-95">
-                                        <Crown className="w-2.5 h-2.5 text-amber-500" />
-                                        <span className="text-[8px] font-bold text-amber-500 uppercase tracking-widest">Pro Only</span>
-                                    </div>
-                                </Link>
-                            )}
+
                         </div>
                         <p className="text-sm text-slate-500 font-serif italic">Deep-layer consistency & compliance analysis</p>
                     </div>
@@ -110,41 +103,17 @@ ${distribution.ruinProbability > 5
                     size="sm"
                     onClick={handleDownload}
                     className="gap-2 border-white/5 bg-slate-900/50 hover:bg-slate-800"
-                    disabled={!isPro}
                 >
                     <Download className="w-4 h-4" />
-                    {isPro ? "Export PDF/Text" : "Locked (Pro Only)"}
+                    Export PDF/Text
                 </Button>
             </div>
 
             <div className="relative group">
                 {/* LOCKED OVERLAY */}
-                {!isPro && (
-                    <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
-                        <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-[8px] rounded-3xl border border-white/5" />
-                        <div className="relative text-center p-8 space-y-6 max-w-sm animate-in-zoom">
-                            <div className="mx-auto w-16 h-16 rounded-full bg-slate-900 flex items-center justify-center border border-amber-500/30 shadow-glow-amber">
-                                <Lock className="w-8 h-8 text-amber-500" />
-                            </div>
-                            <div className="space-y-2">
-                                <h3 className="text-xl font-bold text-white font-outfit uppercase tracking-tight">Institutional Audit Locked</h3>
-                                <p className="text-sm text-slate-400">Upgrade to PRO to access structural stability analysis, Sharpe quality reporting, and firm-compliance scoring.</p>
-                            </div>
-                            <Link href="/pricing" className="w-full">
-                                <Button className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-widest py-6 shadow-glow-amber border-none text-xs">
-                                    <Crown className="w-4 h-4 mr-2" />
-                                    Go Pro to Unlock Audit
-                                </Button>
-                            </Link>
-                            <p className="text-[10px] text-slate-500 font-mono">ULTRA-HIGH PRECISION (50K PATHS) INCLUDED</p>
-                        </div>
-                    </div>
-                )}
 
-                <div className={cn(
-                    "grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-700",
-                    !isPro && "opacity-40 select-none grayscale-[0.5]"
-                )}>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 transition-all duration-700">
                     {/* Status Card */}
                     <Card className={cn("glass relative overflow-hidden transition-all duration-500", status.border)}>
                         <div className={cn("absolute top-0 right-0 w-32 h-32 blur-[60px] -mr-16 -mt-16 rounded-full opacity-20", status.color.replace('text', 'bg'))} />

@@ -256,7 +256,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         signInWithOtp,
         signOut,
         updatePassword,
-        isPro: profile?.subscription_tier === 'PRO',
+        isPro: !!user, // All authenticated users are PRO during Free Beta
         showAuthModal,
         authModalMode,
         triggerAuthModal,

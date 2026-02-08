@@ -114,20 +114,12 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
                 <div>
                     <CardTitle className="text-xl font-outfit font-bold tracking-tight text-white flex items-center gap-2">
                         Risk Heatmap (The Death Zone)
-                        {!isPro && (
-                            <Link href="/pricing">
-                                <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 cursor-pointer hover:bg-amber-500/20 transition-colors active:scale-95">
-                                    <Crown className="w-2.5 h-2.5 text-amber-500" />
-                                    <span className="text-[8px] font-bold text-amber-500 uppercase tracking-widest">Pro</span>
-                                </div>
-                            </Link>
-                        )}
                         <Tooltip content="See where your strategy breaks based on your risk levels.">
                             <AlertTriangle className="w-4 h-4 text-rose-500 cursor-help" />
                         </Tooltip>
                     </CardTitle>
                     <CardDescription className="font-sans">
-                        {isPro ? "Streaming Simulation Control" : "Institutional Risk Matrix"} | <span className="text-emerald-500 font-mono font-bold">{data.length} / 100 Cells</span>
+                        Institutional Risk Matrix | <span className="text-emerald-500 font-mono font-bold">{data.length} / 100 Cells</span>
                     </CardDescription>
                 </div>
                 {isPro && (
@@ -143,25 +135,7 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
             </CardHeader>
             <CardContent className="relative">
                 {/* LOCKED HEATMAP PROMPT */}
-                {!isPro && (
-                    <div className="absolute inset-0 z-20 flex items-center justify-center p-6 bg-slate-950/40 backdrop-blur-sm rounded-xl">
-                        <div className="text-center space-y-4 max-w-xs animate-in-zoom">
-                            <div className="mx-auto w-12 h-12 rounded-xl bg-slate-900 flex items-center justify-center border border-amber-500/30 shadow-glow-amber">
-                                <Lock className="w-6 h-6 text-amber-500" />
-                            </div>
-                            <div className="space-y-1">
-                                <h4 className="text-md font-bold text-white uppercase tracking-tight">Matrix Logic Locked</h4>
-                                <p className="text-[11px] text-slate-400">Unlock the 100-cell sensitivity matrix to visualize the "Death Zone" across WinRates and Risk levels.</p>
-                            </div>
-                            <Link href="/pricing" className="w-full">
-                                <Button size="sm" className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-[0.2em] py-5 text-[10px] border-none shadow-lg shadow-amber-500/20">
-                                    <Crown className="w-3.5 h-3.5 mr-2" />
-                                    Unlock Pro Insights
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
-                )}
+
 
                 {calcError && (
                     <div className="mb-4 p-2 bg-red-500/10 border border-red-500/20 text-red-500 text-xs rounded">
@@ -169,7 +143,7 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
                     </div>
                 )}
 
-                <div className={cn("relative overflow-x-auto", !isPro && "opacity-20 pointer-events-none select-none grayscale")}>
+                <div className="relative overflow-x-auto">
                     <div className="min-w-[500px] grid grid-cols-[60px_repeat(10,1fr)] gap-1">
 
                         {/* Legend Spacer */}

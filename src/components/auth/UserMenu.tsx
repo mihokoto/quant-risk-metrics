@@ -20,16 +20,7 @@ export function UserMenu() {
     if (!user) {
         return (
             <div className="flex items-center gap-2">
-                <Link href="/pricing" className="hidden sm:block">
-                    <Button
-                        variant="default"
-                        size="sm"
-                        className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold uppercase tracking-wider text-[10px] h-8 px-4"
-                    >
-                        <Crown className="w-3.5 h-3.5 mr-1" />
-                        Go Pro
-                    </Button>
-                </Link>
+
                 <Button
                     onClick={() => triggerAuthModal('signin')}
                     variant="ghost"
@@ -82,14 +73,7 @@ export function UserMenu() {
                         </div>
                     </div>
 
-                    {!isPro && (
-                        <Link href="/pricing">
-                            <button className="w-full px-3 py-2 text-left text-sm text-amber-400 hover:bg-white/5 transition-colors flex items-center gap-2">
-                                <Crown className="w-4 h-4" />
-                                Upgrade to Pro
-                            </button>
-                        </Link>
-                    )}
+
 
                     {/* Conditional Security/Settings Menu */}
                     {!hasEmailPassword ? (

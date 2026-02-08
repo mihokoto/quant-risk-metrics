@@ -281,18 +281,10 @@ export function Sidebar() {
                                 <div className="flex justify-between text-xs">
                                     <div className="flex items-center gap-2">
                                         <span className="text-slate-500 uppercase tracking-widest">Iterations</span>
-                                        {!isPro && (
-                                            <Tooltip content="Upgrade to PRO for 50k high-precision paths" side="right">
-                                                <Link href="/pricing">
-                                                    <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-amber-500/10 border border-amber-500/20 cursor-pointer hover:bg-amber-500/20 transition-colors active:scale-95">
-                                                        <Crown className="w-2.5 h-2.5 text-amber-500" />
-                                                        <span className="text-[8px] font-bold text-amber-500 uppercase">Pro</span>
-                                                    </div>
-                                                </Link>
-                                            </Tooltip>
-                                        )}
-                                        <Tooltip content="Number of independent simulation paths. Higher = more accurate risk-of-ruin." side="right">
-                                            <Info className="w-3 h-3 text-slate-600 cursor-help" />
+                                        <Tooltip content="High-precision paths enabled" side="right">
+                                            <div className="flex items-center gap-2">
+                                                <Info className="w-3 h-3 text-slate-600 cursor-help" />
+                                            </div>
                                         </Tooltip>
                                     </div>
                                     <span className={cn("font-mono", isPro ? "text-blue-400" : "text-slate-400")}>
