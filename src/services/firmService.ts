@@ -26,7 +26,9 @@ const MOCK_FIRMS: FirmProfile[] = [
             dailyLossLimit: 0,
             enablePALock: true,
             enableBalanceLock: false,
-            tradesPerDay: 10
+            tradesPerDay: 10,
+            consistencyThreshold: 0.4,
+            minTradingDays: 5
         }
     },
     {
@@ -44,7 +46,9 @@ const MOCK_FIRMS: FirmProfile[] = [
             dailyLossLimit: 1000,
             enablePALock: false,
             enableBalanceLock: true,
-            tradesPerDay: 5
+            tradesPerDay: 5,
+            consistencyThreshold: 0.4,
+            minTradingDays: 5
         }
     },
     {
@@ -62,7 +66,9 @@ const MOCK_FIRMS: FirmProfile[] = [
             dailyLossLimit: 5000,
             enablePALock: false,
             enableBalanceLock: false,
-            tradesPerDay: 5
+            tradesPerDay: 5,
+            consistencyThreshold: 0.4,
+            minTradingDays: 5
         }
     }
 ];
