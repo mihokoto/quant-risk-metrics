@@ -47,9 +47,11 @@ export default function RootLayout({
         <ReactQueryProvider>
           <AuthProvider>
             <div className="animate-in-fade">
-              <Shell>
-                {children}
-              </Shell>
+              <React.Suspense fallback={<div className="min-h-screen bg-slate-950" />}>
+                <Shell>
+                  {children}
+                </Shell>
+              </React.Suspense>
             </div>
           </AuthProvider>
         </ReactQueryProvider>
