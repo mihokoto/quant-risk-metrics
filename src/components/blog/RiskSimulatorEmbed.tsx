@@ -38,10 +38,17 @@ export function RiskSimulatorEmbed({
     const meta = PRESET_METADATA[preset] || PRESET_METADATA["apex_50k"];
 
     // Local State
+    const [mounted, setMounted] = useState(false);
     const [winRate, setWinRate] = useState(defaultWinRate);
     const [riskPerTrade, setRiskPerTrade] = useState(defaultRisk);
     const [stats, setStats] = useState<{ ruin: number, success: number } | null>(null);
     const [loading, setLoading] = useState(false);
+
+    // Initial Run & Mount Guard
+    useEffect(() => {
+        setMounted(true);
+        runSim();
+    }, []);
 
     // Run Sim
     const runSim = async () => {
@@ -72,10 +79,10 @@ export function RiskSimulatorEmbed({
         setLoading(false);
     };
 
-    // Initial Run
-    useEffect(() => {
-        runSim();
-    }, []);
+    // Mount Check
+    if (!mounted) {
+        return <div className="my-8 h-48 animate-pulse bg-slate-800/20 rounded-2xl border border-white/5" />;
+    }
 
     return (
         <Card className="my-8 border-indigo-500/30 bg-slate-900 shadow-xl overflow-hidden not-prose">

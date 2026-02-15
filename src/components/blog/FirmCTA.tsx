@@ -12,7 +12,18 @@ interface FirmCTAProps {
     className?: string;
 }
 
-export function FirmCTA({ firmKey, dealText, features, className }: FirmCTAProps) {
+export function FirmCTA({ firmKey, dealText, features = [], className }: FirmCTAProps) {
+    const [mounted, setMounted] = React.useState(false);
+    const safeFeatures = Array.isArray(features) ? features : [];
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return <div className="my-12 h-32 animate-pulse bg-slate-900/50 rounded-2xl border border-white/5" />;
+    }
+
     return (
         <div className={cn(
             "my-12 relative group rounded-2xl overflow-hidden border border-white/5 bg-slate-900/50 backdrop-blur-sm animate-in-fade",
@@ -46,7 +57,7 @@ export function FirmCTA({ firmKey, dealText, features, className }: FirmCTAProps
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {Array.isArray(features) && features.map((feature, idx) => (
+                        {safeFeatures.map((feature, idx) => (
                             <div key={idx} className="flex items-center gap-2.5 text-slate-400 text-sm">
                                 <CheckCircle2 className="w-4 h-4 text-emerald-500/70" />
                                 <span className="font-serif italic">{feature}</span>
