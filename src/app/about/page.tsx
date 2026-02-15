@@ -1,5 +1,13 @@
-import React from 'react';
+import { Metadata } from 'next';
 import { Target, BrainCircuit, ShieldAlert, Cpu } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: "About QuantRiskMetrics | The Math of Survival",
+    description: "Institutional-grade risk modeling for professional traders. We use advanced Monte Carlo simulations to verify strategy survival.",
+    alternates: {
+        canonical: '/about',
+    },
+};
 
 export default function AboutPage() {
     return (

@@ -4,6 +4,9 @@ import { BlogIndex } from "@/components/blog/BlogIndex";
 export const metadata = {
     title: 'QuantRisk Blog | Institutional Insights',
     description: 'Advanced risk management strategies and quantitative analysis for prop trading.',
+    alternates: {
+        canonical: '/blog',
+    },
 };
 
 export default function BlogPage() {

@@ -37,15 +37,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const post = getPostBySlug(slug);
     if (!post) return {};
 
+    const title = post.frontmatter.title;
+    let description = post.frontmatter.excerpt;
+
+    // Predictive SEO Polishing for Apex/Topstep/FTMO
+    if (slug.includes('apex') || title.toLowerCase().includes('apex')) {
+        description = `Learn how to mathematically survive the Apex Trailing Drawdown using our 50,000-path Monte Carlo simulator. ${description}`;
+    } else if (slug.includes('topstep') || title.toLowerCase().includes('topstep')) {
+        description = `Verify your Topstep consistency with institutional-grade Monte Carlo simulations. ${description}`;
+    } else if (slug.includes('ftmo') || title.toLowerCase().includes('ftmo')) {
+        description = `Stress-test your FTMO strategy against the "Maximum Loss" barrier with high-fidelity risk modeling. ${description}`;
+    }
+
     return {
-        title: `${post.frontmatter.title} | QuantRisk Blog`,
-        description: post.frontmatter.excerpt,
+        title: `${title} | QuantRisk Blog`,
+        description: description,
         alternates: {
             canonical: `/blog/${slug}`,
         },
         openGraph: {
-            title: post.frontmatter.title,
-            description: post.frontmatter.excerpt,
+            title: title,
+            description: description,
             type: 'article',
             publishedTime: post.frontmatter.date,
             authors: [post.frontmatter.author || 'QuantRisk']

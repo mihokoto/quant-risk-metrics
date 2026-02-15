@@ -18,6 +18,9 @@ import { Card, CardContent } from "@/components/ui/card";
 export const metadata: Metadata = {
     title: "Mastering Prop Firm Risk: The Step-by-Step Guide to QuantRiskMetrics",
     description: "Learn how to use institutional-grade Monte Carlo simulations to verify your trading strategy's survival across major prop firms.",
+    alternates: {
+        canonical: '/guide',
+    },
 };
 
 export default function GuidePage() {

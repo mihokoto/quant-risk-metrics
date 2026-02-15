@@ -1,6 +1,14 @@
-import React from 'react';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Eye } from 'lucide-react';
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | QuantRiskMetrics",
+    description: "Our commitment to trader anonymity and data security.",
+    alternates: {
+        canonical: '/privacy',
+    },
+};
 
 export default function PrivacyPage() {
     return (
