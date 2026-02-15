@@ -45,9 +45,8 @@ export function FirmCTA({ firmKey, dealText, features, className }: FirmCTAProps
                         </div>
                     </div>
 
-                    {/* Features Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {features.map((feature, idx) => (
+                        {Array.isArray(features) && features.map((feature, idx) => (
                             <div key={idx} className="flex items-center gap-2.5 text-slate-400 text-sm">
                                 <CheckCircle2 className="w-4 h-4 text-emerald-500/70" />
                                 <span className="font-serif italic">{feature}</span>
