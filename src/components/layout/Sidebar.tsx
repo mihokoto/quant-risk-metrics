@@ -362,7 +362,7 @@ export function Sidebar() {
             {/* Footer / Collapse Trigger */}
             <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-slate-800 bg-slate-900/90">
                 <div className="text-xs text-slate-500 text-center">
-                    QuantRiskMetrics v0.4.0
+                    QuantRiskMetrics v0.4.1
                 </div>
             </div>
         </aside>
