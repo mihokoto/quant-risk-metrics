@@ -1,4 +1,4 @@
-"use client";
+// Static editorial components for MDX - Server Side Compatible
 
 import React from "react";
 import { AlertTriangle, Info, Lightbulb, Quote as QuoteIcon, CheckCircle2 } from "lucide-react";
