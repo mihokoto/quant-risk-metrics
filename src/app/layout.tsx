@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     title: "QuantRiskMetrics | Institutional Risk Analytics",
     description: "Verify your strategy's survival with institutional-grade risk modeling.",
   },
+  verification: {
+    google: "google33087ab8d12ea465",
+  },
 };
 
 export default function RootLayout({
