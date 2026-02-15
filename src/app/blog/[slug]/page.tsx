@@ -53,14 +53,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         title: `${title} | QuantRisk Blog`,
         description: description,
         alternates: {
-            canonical: `/blog/${slug}`,
+            canonical: `https://quant-risk-metrics.vercel.app/blog/${slug}`,
         },
         openGraph: {
             title: title,
             description: description,
+            url: `https://quant-risk-metrics.vercel.app/blog/${slug}`,
             type: 'article',
             publishedTime: post.frontmatter.date,
-            authors: [post.frontmatter.author || 'QuantRisk']
+            authors: [post.frontmatter.author || 'QuantRisk Intelligence']
         }
     };
 }
@@ -75,8 +76,37 @@ export default async function BlogPost({ params }: Props) {
 
     const headings = extractHeadings(post.content);
 
+    // Dynamic Article Schema for Google Search Bots
+    const articleSchema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.frontmatter.title,
+        "description": post.frontmatter.excerpt,
+        "author": {
+            "@type": "Organization",
+            "name": post.frontmatter.author || "QuantRisk Intelligence"
+        },
+        "datePublished": post.frontmatter.date,
+        "publisher": {
+            "@type": "Organization",
+            "name": "QuantRiskMetrics",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://quant-risk-metrics.vercel.app/logo.png"
+            }
+        },
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://quant-risk-metrics.vercel.app/blog/${slug}`
+        }
+    };
+
     return (
         <div className="min-h-screen bg-slate-950">
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
             <ReadingProgress />
 
             {/* Sticky Editorial Header */}

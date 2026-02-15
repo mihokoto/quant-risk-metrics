@@ -25,6 +25,7 @@ export function Footer() {
                             <Link href="/blog" className="text-xs text-slate-500 hover:text-white transition-colors">Editorial & Math</Link>
                             <Link href="/guide" className="text-xs text-slate-500 hover:text-white transition-colors">User Guide</Link>
                             <Link href="/about" className="text-xs text-slate-500 hover:text-white transition-colors">Our Mission</Link>
+                            <a href="/sitemap.xml" target="_blank" className="text-[10px] text-slate-600 hover:text-white transition-colors uppercase tracking-tighter">Sitemap (Bot)</a>
                         </nav>
                     </div>
 

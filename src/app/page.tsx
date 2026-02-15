@@ -10,7 +10,8 @@ import { RiskAuditReport } from "@/components/dashboard/RiskAuditReport";
 import { FirmComparator } from "@/components/dashboard/FirmComparator";
 import { OutcomeDistribution } from "@/components/dashboard/OutcomeDistribution"; // New
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Zap, RefreshCw, BarChart3 } from "lucide-react";
+import { Zap, RefreshCw, BarChart3, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Dashboard() {
   // 1. Get State from Store
@@ -152,6 +153,58 @@ export default function Dashboard() {
 
       {/* NEW: Comprehensive Institutional Audit */}
       <RiskAuditReport stats={result} params={params} />
+
+      {/* NEW: Recent Research (Bot-Friendly Internal Linking) */}
+      <section className="mt-20 pt-12 border-t border-white/5 animate-in-slide-up" style={{ animationDelay: '0.6s' }}>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h3 className="text-xl font-outfit font-bold text-white tracking-tight">Recent Quantitative Research</h3>
+            <p className="text-sm text-slate-500 mt-1">Foundational insights on prop firm survival and risk modeling.</p>
+          </div>
+          <Link href="/blog" className="text-xs font-bold text-blue-500 hover:text-blue-400 uppercase tracking-widest transition-colors flex items-center gap-2">
+            View Editorial <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Apex Trailing Drawdown Guide",
+              slug: "optimizing-apex-drawdown",
+              excerpt: "How to mathematically survive the Apex Trailing Drawdown using high-fidelity simulations.",
+              category: "Firm Analysis"
+            },
+            {
+              title: "The FTMO Masterclass",
+              slug: "ftmo-static-drawdown-strategy",
+              excerpt: "Leveraging the Static Drawdown barrier for institutional-grade account longevity.",
+              category: "Strategy"
+            },
+            {
+              title: "Mastering Topstep Daily Limits",
+              slug: "mastering-topstep-daily-limit",
+              excerpt: "Quantitative boundary analysis for Topstep consistency and drawdown preservation.",
+              category: "Risk Control"
+            }
+          ].map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group p-6 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+            >
+              <div className="text-[10px] font-mono text-blue-500 font-bold uppercase tracking-widest mb-3">
+                {post.category}
+              </div>
+              <h4 className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors mb-2">
+                {post.title}
+              </h4>
+              <p className="text-xs text-slate-500 leading-relaxed font-serif">
+                {post.excerpt}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
