@@ -1,4 +1,5 @@
-import dynamic from 'next-dynamic';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import dynamic from 'next/dynamic';
 const RiskSimulatorEmbed = dynamic(() => import('@/components/blog/RiskSimulatorEmbed').then(mod => mod.RiskSimulatorEmbed), { ssr: false });
 const FirmCTA = dynamic(() => import('@/components/blog/FirmCTA').then(mod => mod.FirmCTA), { ssr: false });
 import { Callout, QuantBadge, Quote } from '@/components/blog/EditorialComponents';
