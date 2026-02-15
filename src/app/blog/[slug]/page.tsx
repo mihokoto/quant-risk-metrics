@@ -19,8 +19,6 @@ const components = {
     QuantBadge,
     Quote,
     FirmCTA,
-    h2: (props: any) => <h2 className="scroll-mt-32 font-bold font-outfit text-3xl mt-16 mb-8 text-white" {...props} />,
-    h3: (props: any) => <h3 className="scroll-mt-32 font-bold font-outfit text-2xl mt-12 mb-6 text-white" {...props} />,
 };
 
 interface Props {
