@@ -26,8 +26,8 @@ interface RiskHeatmapProps {
 }
 
 export function RiskHeatmap({ params }: RiskHeatmapProps) {
-    const { isPro } = useAuth();
     const [data, setData] = useState<HeatmapCell[]>([]);
+
     const [loading, setLoading] = useState(false);
     const [calcError, setCalcError] = useState<string | null>(null);
 
@@ -44,7 +44,7 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
     }, [data]);
 
     const calculateHeatmap = useCallback(async () => {
-        if (!params || !params.rules || !isPro) return;
+        if (!params || !params.rules) return;
 
         setLoading(true);
         setCalcError(null);
@@ -85,10 +85,9 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
         } finally {
             setLoading(false);
         }
-    }, [params, isPro]);
+    }, [params]);
 
     useEffect(() => {
-        if (!isPro) return;
         const timer = setTimeout(() => {
             calculateHeatmap();
         }, 300);
@@ -97,7 +96,6 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
         params.rules?.drawdownLimit,
         params.rules?.profitTarget,
         params.initialBalance,
-        isPro,
         calculateHeatmap
     ]);
 
@@ -122,16 +120,14 @@ export function RiskHeatmap({ params }: RiskHeatmapProps) {
                         Institutional Risk Matrix | <span className="text-emerald-500 font-mono font-bold">{data.length} / 100 Cells</span>
                     </CardDescription>
                 </div>
-                {isPro && (
-                    <button
-                        onClick={() => calculateHeatmap()}
-                        disabled={loading}
-                        className="p-2 hover:bg-slate-800 rounded-lg transition-colors disabled:opacity-50"
-                        title="Force Recalculate"
-                    >
-                        <RefreshCw className={`w-4 h-4 text-slate-400 ${loading ? 'animate-spin' : ''}`} />
-                    </button>
-                )}
+                <button
+                    onClick={() => calculateHeatmap()}
+                    disabled={loading}
+                    className="p-2 hover:bg-slate-800 rounded-lg transition-colors disabled:opacity-50"
+                    title="Force Recalculate"
+                >
+                    <RefreshCw className={`w-4 h-4 text-slate-400 ${loading ? 'animate-spin' : ''}`} />
+                </button>
             </CardHeader>
             <CardContent className="relative">
                 {/* LOCKED HEATMAP PROMPT */}

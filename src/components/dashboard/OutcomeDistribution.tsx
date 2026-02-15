@@ -65,7 +65,7 @@ export function OutcomeDistribution({ stats, initialBalance }: OutcomeDistributi
                     Probability density of final equity (Expectancy Visualization)
                 </CardDescription>
             </CardHeader>
-            <CardContent className="h-[300px]">
+            <CardContent className="h-[300px] min-h-[300px]">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />

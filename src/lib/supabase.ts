@@ -21,24 +21,8 @@ export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '', {
     },
 });
 
-// Database types placeholder - will be generated using Supabase CLI
-// Run: npx supabase gen types typescript --project-id YOUR_PROJECT_ID > src/lib/database.types.ts
+// Database types placeholder
 export type Database = {
-    public: {
-        Tables: {
-            // Define your table types here
-        };
-        Views: {
-            // Define your view types here
-        };
-        Functions: {
-            // Define your function types here
-        };
-    };
+    // ... types
 };
 
-// Typed client for better TypeScript support
-export const typedSupabase = createClient<Database>(
-    supabaseUrl || '',
-    supabaseAnonKey || ''
-);

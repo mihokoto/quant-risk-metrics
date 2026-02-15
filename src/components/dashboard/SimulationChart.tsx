@@ -42,7 +42,7 @@ export function SimulationChart({ paths, initialBalance }: SimulationChartProps)
     if (!paths.length) return null;
 
     return (
-        <div className="w-full h-[400px]">
+        <div className="w-full h-[400px] min-h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />

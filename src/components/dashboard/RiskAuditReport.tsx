@@ -28,7 +28,7 @@ interface RiskAuditReportProps {
 }
 
 export function RiskAuditReport({ stats, params }: RiskAuditReportProps) {
-    const { isPro } = useAuth();
+    const { isPro, triggerAuthModal } = useAuth();
 
     if (!stats) return null;
 
@@ -45,7 +45,10 @@ export function RiskAuditReport({ stats, params }: RiskAuditReportProps) {
     const status = getRiskStatus();
 
     const handleDownload = () => {
-        if (!isPro) return;
+        if (!isPro) {
+            triggerAuthModal('signup', true);
+            return;
+        }
 
         const report = `
 QUANTITATIVE RISK AUDIT REPORT

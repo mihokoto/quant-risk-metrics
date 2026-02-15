@@ -281,7 +281,7 @@ export function Sidebar() {
                                 <div className="flex justify-between text-xs">
                                     <div className="flex items-center gap-2">
                                         <span className="text-slate-500 uppercase tracking-widest">Iterations</span>
-                                        <Tooltip content="High-precision paths enabled" side="right">
+                                        <Tooltip content={isPro ? "High-precision (50k) enabled" : "Sign up for FREE to enable 50,000 High-Precision paths"} side="right">
                                             <div className="flex items-center gap-2">
                                                 <Info className="w-3 h-3 text-slate-600 cursor-help" />
                                             </div>
@@ -294,7 +294,7 @@ export function Sidebar() {
                                 <Slider
                                     value={[params.iterations]}
                                     min={1000}
-                                    max={isPro ? 50000 : 5000}
+                                    max={isPro ? 50000 : 10000}
                                     step={1000}
                                     onValueChange={(val) => setParams({ iterations: val[0] })}
                                 />
