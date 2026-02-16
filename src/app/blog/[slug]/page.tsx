@@ -40,13 +40,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = post.frontmatter.title;
     let description = post.frontmatter.excerpt;
 
-    // Predictive SEO Polishing for Apex/Topstep/FTMO
+    // Predictive SEO Polishing (Targeting 140-160 characters)
     if (slug.includes('apex') || title.toLowerCase().includes('apex')) {
-        description = `Learn how to mathematically survive the Apex Trailing Drawdown using our 50,000-path Monte Carlo simulator. ${description}`;
+        description = `Master the Apex Trailing Drawdown. Our quantitative guide uses 50,000 Monte Carlo paths to verify your strategy's survival and risk of ruin in prop environments.`;
     } else if (slug.includes('topstep') || title.toLowerCase().includes('topstep')) {
-        description = `Verify your Topstep consistency with institutional-grade Monte Carlo simulations. ${description}`;
+        description = `Verify your Topstep Daily Limit consistency. We use institutional-grade Monte Carlo simulations to stress-test your strategy against firm-specific risk rules.`;
     } else if (slug.includes('ftmo') || title.toLowerCase().includes('ftmo')) {
-        description = `Stress-test your FTMO strategy against the "Maximum Loss" barrier with high-fidelity risk modeling. ${description}`;
+        description = `Stress-test your FTMO Static Drawdown strategy. Our risk modeling engine helps you stay above the Maximum Loss barrier through high-fidelity math simulations.`;
+    } else {
+        // Fallback with length check
+        description = description.length > 155 ? description.substring(0, 155) + "..." : description;
+        if (description.length < 130) description = `${description} Explore institutional risk intelligence for prop traders.`;
     }
 
     return {
@@ -76,7 +80,7 @@ export default async function BlogPost({ params }: Props) {
 
     const headings = extractHeadings(post.content);
 
-    // Dynamic Article Schema for Google Search Bots
+    // Dynamic Schemas for Google Search Bots
     const articleSchema = {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -101,11 +105,40 @@ export default async function BlogPost({ params }: Props) {
         }
     };
 
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://quant-risk-metrics.vercel.app/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Blog",
+                "item": "https://quant-risk-metrics.vercel.app/blog"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.frontmatter.title,
+                "item": `https://quant-risk-metrics.vercel.app/blog/${slug}`
+            }
+        ]
+    };
+
     return (
         <div className="min-h-screen bg-slate-950">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
             />
             <ReadingProgress />
 

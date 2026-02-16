@@ -161,8 +161,8 @@ export default function Dashboard() {
             <h3 className="text-xl font-outfit font-bold text-white tracking-tight">Recent Quantitative Research</h3>
             <p className="text-sm text-slate-500 mt-1">Foundational insights on prop firm survival and risk modeling.</p>
           </div>
-          <Link href="/blog" className="text-xs font-bold text-blue-500 hover:text-blue-400 uppercase tracking-widest transition-colors flex items-center gap-2">
-            View Editorial <ArrowRight className="w-3 h-3" />
+          <Link href="/blog" className="group/btn inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300 uppercase tracking-widest">
+            View Editorial <ArrowRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
           </Link>
         </div>
 
@@ -190,17 +190,20 @@ export default function Dashboard() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group p-6 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-blue-500/30 transition-all duration-300"
+              className="group p-6 rounded-2xl bg-slate-900/40 border border-white/5 hover:border-blue-500/50 hover:bg-slate-900 transition-all duration-300"
             >
-              <div className="text-[10px] font-mono text-blue-500 font-bold uppercase tracking-widest mb-3">
+              <div className="text-[10px] font-mono text-blue-400 font-bold uppercase tracking-widest mb-3 opacity-70">
                 {post.category}
               </div>
-              <h4 className="text-sm font-bold text-white group-hover:text-blue-400 transition-colors mb-2">
+              <h4 className="text-base font-bold text-white group-hover:text-blue-400 transition-colors mb-2 font-outfit">
                 {post.title}
               </h4>
-              <p className="text-xs text-slate-500 leading-relaxed font-serif">
+              <p className="text-xs text-slate-400 leading-relaxed font-serif group-hover:text-slate-300 transition-colors">
                 {post.excerpt}
               </p>
+              <div className="mt-4 flex items-center gap-2 text-[10px] font-bold text-blue-500 uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all">
+                Read Analysis <ArrowRight className="w-3 h-3" />
+              </div>
             </Link>
           ))}
         </div>
