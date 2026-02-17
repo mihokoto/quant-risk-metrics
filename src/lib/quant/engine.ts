@@ -43,10 +43,12 @@ export interface SimulationStats {
         sharpeRatio: number;
         ulcerIndex: number;
         consistencyScore: number; // 0-100 score
+        bestDayImpact: number; // % of successes invalidated by Best Day Rule
     };
     violations: {
         consistencyBreach: boolean;
         minDaysBreach: boolean;
+        bestDayBreach: boolean;
     };
     paths: SimulationPath[];
 }
@@ -60,6 +62,7 @@ export interface SimulationPath {
     // Elite Tracking
     totalProfit: number;
     maxDayProfit: number;
+    maxTradeProfit: number;
     daysTraded: number;
     squaredDrawdowns: number[]; // For Ulcer Index
     returns: number[]; // For Sharpe
@@ -125,7 +128,11 @@ export class MonteCarloSimulator {
                 const isConsistent = consistencyRatio <= (this.params.rules.consistencyThreshold || 0.4);
                 const hasMinDays = path.daysTraded >= (this.params.rules.minTradingDays || 5);
 
-                if (isConsistent && hasMinDays) {
+                // Best Day Rule: No single trade > 50% of Profit Target
+                const bestDayThreshold = profitTarget * 0.5;
+                const isBestDayValid = path.maxTradeProfit <= bestDayThreshold;
+
+                if (isConsistent && hasMinDays && isBestDayValid) {
                     cleanSuccessCount++;
                 }
 
@@ -225,11 +232,13 @@ export class MonteCarloSimulator {
                 var95,
                 sharpeRatio,
                 ulcerIndex,
-                consistencyScore
+                consistencyScore,
+                bestDayImpact: successCount > 0 ? ((successCount - cleanSuccessCount) / successCount) * 100 : 0
             },
             violations: {
                 consistencyBreach: successCount > 0 && cleanSuccessCount < successCount,
-                minDaysBreach: successCount > 0 && paths.some(p => p.isSuccess && p.daysTraded < (this.params.rules.minTradingDays || 5))
+                minDaysBreach: successCount > 0 && paths.some(p => p.isSuccess && p.daysTraded < (this.params.rules.minTradingDays || 5)),
+                bestDayBreach: successCount > 0 && paths.some(p => p.isSuccess && p.maxTradeProfit > (profitTarget * 0.5))
             },
             paths
         };
@@ -272,6 +281,7 @@ export class MonteCarloSimulator {
 
         // Elite Metrics Tracking
         let maxDayProfit = 0;
+        let maxTradeProfit = 0;
         let currentDayProfit = 0;
         let daysTraded = 0;
 
@@ -320,6 +330,7 @@ export class MonteCarloSimulator {
             // Tracking Day Consistency
             currentDayProfit += pnl;
             if (currentDayProfit > maxDayProfit) maxDayProfit = currentDayProfit;
+            if (pnl > maxTradeProfit) maxTradeProfit = pnl;
 
             // Metrics Update
             const ret = pnl / currentEquity;
@@ -409,6 +420,7 @@ export class MonteCarloSimulator {
             ruinStep,
             totalProfit: currentEquity - initialBalance,
             maxDayProfit,
+            maxTradeProfit,
             daysTraded,
             squaredDrawdowns,
             returns,

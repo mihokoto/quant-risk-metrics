@@ -41,7 +41,7 @@ export function RiskSimulatorEmbed({
     const [mounted, setMounted] = useState(false);
     const [winRate, setWinRate] = useState(defaultWinRate);
     const [riskPerTrade, setRiskPerTrade] = useState(defaultRisk);
-    const [stats, setStats] = useState<{ ruin: number, success: number } | null>(null);
+    const [stats, setStats] = useState<{ ruin: number, success: number, bestDayImpact: number } | null>(null);
     const [loading, setLoading] = useState(false);
 
     // Initial Run & Mount Guard
@@ -74,7 +74,8 @@ export function RiskSimulatorEmbed({
 
         setStats({
             ruin: res.distribution.ruinProbability,
-            success: res.distribution.successProbability
+            success: res.distribution.successProbability,
+            bestDayImpact: res.metrics.bestDayImpact
         });
         setLoading(false);
     };
@@ -142,23 +143,32 @@ export function RiskSimulatorEmbed({
 
                 {/* Results */}
                 {stats && (
-                    <div className="grid grid-cols-2 gap-4 pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
                         <div className="p-4 rounded bg-slate-800 border border-slate-700 flex flex-col items-center">
-                            <div className="flex items-center gap-2 text-sm text-slate-400 mb-1">
-                                <IconAlert className={`w-4 h-4 ${stats.ruin > 5 ? 'text-rose-500' : 'text-emerald-500'}`} />
-                                Ruin Probability
+                            <div className="flex items-center gap-2 text-[10px] text-slate-500 uppercase tracking-wider mb-1">
+                                <IconAlert className={`w-3 h-3 ${stats.ruin > 5 ? 'text-rose-500' : 'text-emerald-500'}`} />
+                                Ruin Prob.
                             </div>
-                            <span className={`text-2xl font-mono font-bold ${stats.ruin > 5 ? 'text-rose-500' : 'text-emerald-400'}`}>
+                            <span className={`text-xl font-mono font-bold ${stats.ruin > 5 ? 'text-rose-500' : 'text-emerald-400'}`}>
                                 {stats.ruin.toFixed(1)}%
                             </span>
                         </div>
                         <div className="p-4 rounded bg-slate-800 border border-slate-700 flex flex-col items-center">
-                            <div className="flex items-center gap-2 text-sm text-slate-400 mb-1">
-                                <IconCheck className="w-4 h-4 text-emerald-500" />
+                            <div className="flex items-center gap-2 text-[10px] text-slate-500 uppercase tracking-wider mb-1">
+                                <IconCheck className="w-3 h-3 text-emerald-500" />
                                 Success Rate
                             </div>
-                            <span className="text-2xl font-mono font-bold text-emerald-400">
+                            <span className="text-xl font-mono font-bold text-emerald-400">
                                 {stats.success.toFixed(1)}%
+                            </span>
+                        </div>
+                        <div className="p-4 rounded bg-slate-800 border border-slate-700 flex flex-col items-center">
+                            <div className="flex items-center gap-2 text-[10px] text-slate-500 uppercase tracking-wider mb-1">
+                                <IconAlert className={`w-3 h-3 ${stats.bestDayImpact > 10 ? 'text-amber-500' : 'text-slate-500'}`} />
+                                Best Day Impact
+                            </div>
+                            <span className={`text-xl font-mono font-bold ${stats.bestDayImpact > 10 ? 'text-amber-500' : 'text-white'}`}>
+                                {stats.bestDayImpact.toFixed(1)}%
                             </span>
                         </div>
                     </div>
