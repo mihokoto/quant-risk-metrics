@@ -22,7 +22,7 @@ const baseUrl = getBaseUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "QuantRiskMetrics | Institutional Risk Analytics",
+    default: "QuantRiskMetrics | #1 Prop Firm Risk Simulator (Apex, FTMO, Topstep)",
     template: "%s | QuantRiskMetrics"
   },
   description: "Advanced Monte Carlo simulations and survival-focused risk intelligence for professional prop firm traders.",

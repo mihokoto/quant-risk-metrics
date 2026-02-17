@@ -6,6 +6,7 @@ import { Sidebar, SidebarTrigger } from "./Sidebar";
 import { Footer } from "./Footer";
 import { useAuth } from "@/contexts/AuthContext";
 import { AuthModal } from "@/components/auth/AuthModal";
+import { ExitIntentModal } from "@/components/blog/ExitIntentModal";
 import { useRiskStore } from "@/store/riskStore";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -53,6 +54,8 @@ export function Shell({ children }: ShellProps) {
                     isProContext={isAuthProContext}
                 />
             )}
+
+            <ExitIntentModal />
 
             <main
                 className={cn(
