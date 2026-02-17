@@ -9,6 +9,7 @@ import { RiskHeatmap } from "@/components/dashboard/RiskHeatmap";
 import { RiskAuditReport } from "@/components/dashboard/RiskAuditReport";
 import { FirmComparator } from "@/components/dashboard/FirmComparator";
 import { OutcomeDistribution } from "@/components/dashboard/OutcomeDistribution"; // New
+import { PartnerBanner } from "@/components/ui/PartnerBanner";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Zap, RefreshCw, BarChart3, ArrowRight } from "lucide-react";
 import Link from "next/link";
@@ -145,9 +146,13 @@ export default function Dashboard() {
           <OutcomeDistribution stats={result} initialBalance={params.initialBalance} />
         </div>
 
-        {/* NEW: Risk Heatmap (Full Width Row) */}
         <div className="lg:col-span-3 glass-hover animate-in-slide-up" style={{ animationDelay: '0.5s' }}>
           <RiskHeatmap params={params} />
+        </div>
+
+        {/* Global Partner Display */}
+        <div className="lg:col-span-3 flex justify-center py-8 animate-in-fade" style={{ animationDelay: '0.6s' }}>
+          <PartnerBanner firmKey="ftmo" type="leaderboard" className="max-w-[728px] shadow-[0_0_50px_rgba(59,130,246,0.1)] border-white/10" />
         </div>
       </div>
 

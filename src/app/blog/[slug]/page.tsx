@@ -2,6 +2,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { RiskSimulatorEmbed } from '@/components/blog/RiskSimulatorEmbed';
 import { Callout, QuantBadge, Quote } from '@/components/blog/EditorialComponents';
 import { FirmCTA } from '@/components/blog/FirmCTA';
+import { PartnerBanner } from '@/components/ui/PartnerBanner';
 import { ReadingProgress } from '@/components/blog/ReadingProgress';
 import { TableOfContents } from '@/components/blog/TableOfContents';
 import { NewsletterSignup } from '@/components/blog/NewsletterSignup';
@@ -19,6 +20,7 @@ const components = {
     QuantBadge,
     Quote,
     FirmCTA,
+    PartnerBanner,
 };
 
 interface Props {
