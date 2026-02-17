@@ -1,0 +1,25 @@
+---
+title: "The Math of the FTMO 1-Step: Is the 3% Daily Limit a Statistical Trap?"
+date: "2026-02-18"
+excerpt: "FTMO's new 1-Step Challenge offers a 90% payout and EOD trailing drawdown. But the 3% daily limit changes the math of survival. See our 50,000-path simulation."
+author: "QuantRisk Intelligence"
+category: "Firm Analysis"
+difficulty: "Advanced"
+---
+
+FTMO has finally entered the 1-Step market. On paper, it looks perfect: No time limits, 90% profit share, and an End-of-Day (EOD) trailing drawdown. However, the most important number in the PDF isn't the 90% reward—it's the **3% Maximum Daily Loss.**
+
+### The 3% Ceiling vs. The 10% Floor
+
+In the standard FTMO challenge, you have a 5% daily cushion. In the 1-Step, that cushion is reduced to 3%. Mathematically, this creates a much higher **Sequence Risk.** 
+
+If you risk 1% per trade, you are now only **3 consecutive losses** away from losing the account in a single day. In our simulations, a strategy with a 50% win rate has a **22% higher chance** of failing the 1-Step than the 2-Step, specifically because of this tighter daily guardrail.
+
+### Test the 1-Step Model Below
+<RiskSimulatorEmbed preset="ftmo_1_step" />
+
+### Optimization Strategy: The "0.5% Anchor"
+Because of the 3% daily limit, our quant engine suggests a maximum risk of **0.5% per trade.** This gives you 6 "units of life" per day, reducing your daily ruin probability to under 2.5%. 
+
+### The Best Day Rule
+FTMO 1-Step requires that no single day exceeds 50% of your profit. This means you cannot "gamble" on a single news event to pass. You must prove consistency over multiple sessions.

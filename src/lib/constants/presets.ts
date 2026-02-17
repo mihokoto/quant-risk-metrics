@@ -48,6 +48,18 @@ export const FIRM_PRESETS: Record<string, FirmRules> = {
         tradesPerDay: 4,
         consistencyThreshold: 0.4,
         minTradingDays: 5
+    },
+    "ftmo_1_step": {
+        drawdownType: 'TRAILING_EOD',
+        breachType: 'HARD_BREACH',
+        profitTarget: 10000,
+        drawdownLimit: 10000,
+        dailyLossLimit: 3000,
+        enablePALock: false,
+        enableBalanceLock: true,
+        tradesPerDay: 4,
+        consistencyThreshold: 0.5,
+        minTradingDays: 3
     }
 };
 
@@ -55,5 +67,6 @@ export const PRESET_METADATA: Record<string, { title: string, balance: number }>
     "apex_50k": { title: "Apex 50k Evaluation", balance: 50000 },
     "ftmo_100k": { title: "FTMO 100k Challenge", balance: 100000 },
     "topstep_50k": { title: "Topstep 50k Combine", balance: 50000 },
-    "custom_standard": { title: "Custom Standard Model", balance: 10000 }
+    "custom_standard": { title: "Custom Standard Model", balance: 10000 },
+    "ftmo_1_step": { title: "FTMO 1-Step Challenge", balance: 100000 }
 };
